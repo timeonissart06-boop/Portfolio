@@ -77,3 +77,42 @@ footer p{font-size:.7rem;color:var(--muted);font-weight:300;letter-spacing:.05em
   footer{padding:1.2rem 1.5rem;flex-direction:column;gap:.4rem}
   .proj-hero{padding:2rem 1.5rem}
 }
+
+/* ── RESPONSIVE MOBILE ── */
+@media(max-width:768px){
+  nav{padding:1rem 1.2rem}
+  .nav-links{gap:.8rem}
+  .nav-links a{font-size:.62rem;letter-spacing:.08em}
+  .content-section{padding:2rem 1.2rem}
+  .grid-2,.grid-asymm{grid-template-columns:1fr;gap:1.5rem}
+  .grid-3{grid-template-columns:1fr 1fr;gap:.8rem}
+  hr.div{margin:0 1.2rem}
+  .sec-head{padding:1.8rem 1.2rem 1rem}
+  footer{padding:1.2rem;flex-direction:column;gap:.4rem;text-align:center}
+  .proj-hero{padding:2rem 1.2rem;min-height:36vh}
+  .proj-title{font-size:2.2rem}
+  .proj-desc{font-size:.88rem}
+  .stat-block{padding:1rem}
+  .stat-n{font-size:1.7rem}
+  .ibox img{max-height:280px}
+  .carousel-track img{max-height:260px}
+  .stats-grid{grid-template-columns:1fr 1fr}
+}
+
+@media(max-width:480px){
+  nav{padding:.9rem 1rem}
+  .nav-links{gap:.5rem}
+  .nav-links a{font-size:.55rem;letter-spacing:.06em}
+  .content-section{padding:1.5rem 1rem}
+  .grid-3{grid-template-columns:1fr}
+  hr.div{margin:0 1rem}
+  .sec-head{padding:1.4rem 1rem .8rem}
+  .sec-label{font-size:.6rem}
+  footer{padding:1rem}
+  .proj-hero{padding:1.5rem 1rem;min-height:30vh}
+  .proj-title{font-size:1.8rem}
+  .proj-desc{font-size:.85rem}
+  .ibox img{max-height:220px}
+  h2.section-title{font-size:1.6rem}
+  p.body-text{font-size:.92rem}
+}
