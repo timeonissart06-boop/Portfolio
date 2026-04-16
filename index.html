@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timéo Renard — Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .hero{display:grid;grid-template-columns:1fr 360px;min-height:86vh;align-items:center;padding:0 4rem;gap:4rem}
+    .hero-img{height:72vh;border-radius:2px;overflow:hidden}
+    .hero-img img{width:100%;height:100%;object-fit:cover;object-position:center top}
+    .eyebrow{display:flex;align-items:center;gap:.8rem;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
+    .eyebrow::before{content:'';width:32px;height:.5px;background:var(--gold);display:inline-block}
+    .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5vw,4.8rem);font-weight:300;line-height:1.03;margin-bottom:1.3rem}
+    .hero h1 em{font-style:italic;color:var(--gold)}
+    .hero-sub{font-size:.98rem;font-weight:300;color:var(--muted);line-height:1.85;max-width:460px;margin-bottom:.9rem}
+    .hero-obj{font-size:.88rem;color:var(--dark);margin-bottom:1.8rem;padding-left:1rem;border-left:2px solid var(--gold);font-weight:400}
+    .hero-tools{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:2.2rem}
+    .cta-row{display:flex;gap:1.5rem;align-items:center}
+    .cta-p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--off);background:var(--dark);padding:.72rem 1.4rem;border-radius:2px;text-decoration:none;transition:background .2s}
+    .cta-p:hover{background:#2a2a2a}
+    .cta-s{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-bottom:.5px solid var(--border2);padding-bottom:1px;text-decoration:none;transition:color .2s}
+    .cta-s:hover{color:var(--gold)}
+
+    /* GRILLE PROJETS — layout sans trous */
+    .proj-section{padding:3.5rem 4rem}
+    .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto;gap:1.2rem;margin-top:1.8rem}
+    .pcard{position:relative;overflow:hidden;border-radius:2px;text-decoration:none;display:block}
+    .pcard img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;filter:brightness(.68)}
+    .pcard:hover img{transform:scale(1.04);filter:brightness(.45)}
+    .pcard-overlay{position:absolute;bottom:0;left:0;right:0;padding:1.2rem 1.4rem;background:linear-gradient(transparent,rgba(8,8,8,.92))}
+    .pcard-tag{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+    .pcard-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:#fff;line-height:1.1;margin-bottom:.2rem}
+    .pcard-sub{font-size:.72rem;color:rgba(255,255,255,.5);font-weight:300}
+    .pcard-arrow{position:absolute;top:.9rem;right:.9rem;color:rgba(255,255,255,.3);font-size:.82rem;transition:all .25s}
+    .pcard:hover .pcard-arrow{color:var(--gold);transform:translate(2px,-2px)}
+
+    /* Layout précis sans trous */
+    .pcard:nth-child(1){grid-column:1;grid-row:1/3;height:580px} /* PoleWin — tall */
+    .pcard:nth-child(2){grid-column:2;grid-row:1;height:280px}   /* OQG */
+    .pcard:nth-child(3){grid-column:3;grid-row:1;height:280px}   /* Regard */
+    .pcard:nth-child(4){grid-column:2;grid-row:2;height:280px}   /* Visuels sport */
+    .pcard:nth-child(5){grid-column:3;grid-row:2;height:280px}   /* Mix and Light */
+    .pcard:nth-child(6){grid-column:1/4;grid-row:3;height:260px} /* Cadeau-be — full width */
+    /* Cadrage spécifique */
+    .pcard:nth-child(4) img{object-position:center 15%}
+    .pcard:nth-child(6) img{object-fit:contain;background:#1a1a2e}
+
+    .about-s{display:grid;grid-template-columns:1.2fr 1fr;gap:3.5rem;padding:3rem 4rem;align-items:start;border-top:.5px solid var(--border)}
+    .about-s h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin-bottom:1.1rem;line-height:1.2}
+    .about-s p{font-size:.98rem;color:var(--muted);font-weight:300;line-height:1.9;margin-bottom:.85rem}
+
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr;padding:3rem 1.5rem;min-height:auto}
+      .hero-img{height:42vh;order:-1}
+      .proj-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+      .pcard:nth-child(n){grid-column:auto;grid-row:auto;height:240px}
+      .pcard:nth-child(6){grid-column:1/3;height:200px}
+      .about-s{grid-template-columns:1fr;padding:2rem 1.5rem}
+      .proj-section{padding:2rem 1.5rem}
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">TR</a>
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow fade-in">Marketing · Design · Community</div>
+    <h1 class="fade-in">Timéo<br><em>Renard.</em></h1>
+    <p class="hero-sub fade-in">21 ans, étudiant en B1 Marketing Digital à Sophia Ynov Campus. Créatif digital spécialisé dans la conception de contenus visuels, la stratégie de marque et la gestion de communauté.</p>
+    <p class="hero-obj fade-in">Objectif : Community Manager pour une écurie de Formule 1.</p>
+    <div class="hero-tools fade-in">
+      <span class="chip">Canva</span><span class="chip">Figma</span><span class="chip">Illustrator</span>
+      <span class="chip">Lightroom</span><span class="chip">WordPress</span><span class="chip">Meta Ads</span>
+      <span class="chip">Google Ads</span><span class="chip">ClickUp</span>
+    </div>
+    <div class="cta-row fade-in">
+      <a class="cta-p" href="#projets">Voir mes projets →</a>
+      <a class="cta-s" href="#contact">Me contacter</a>
+    </div>
+  </div>
+  <div class="hero-img fade-in">
+    <img src="images/d020345a-5bcd-4ce0-aa94-739cd2f2a157.jpg" alt="Timéo Renard">
+  </div>
+</section>
+
+<hr class="div">
+
+<section class="proj-section" id="projets">
+  <div class="sec-head">
+    <span class="sec-label">Projets</span>
+    <div class="sec-line"></div>
+  </div>
+  <div class="proj-grid">
+
+    <a href="polewin.html" class="pcard fade-in">
+      <img src="images/IMG_0079.jpg" alt="PoleWin">
+      <span class="pcard-arrow">↗</span>
+      <div class="pcard-overlay">
+        <div class="pcard-tag">App mobile · F1 · 2024–2025</div>
+        <div class="pcard-title">PoleWin</div>
+        <div class="pcard-sub">Marketing · Community · Design</div>
+      </div>
+    </a>
+
+    <a href="oreille-qui-gratte.html" class="pcard fade-in">
+      <img src="images/OQG Mockup Logo 04.jpg" alt="OQG">
+      <span class="pcard-arrow">↗</span>
+      <div class="pcard-overlay">
+        <div class="pcard-tag">Identité visuelle · Branding</div>
+        <div class="pcard-title">L'oreille qui gratte</div>
+        <div class="pcard-sub">Logo · Charte · Affiches</div>
+      </div>
+    </a>
+
+    <a href="regard-croises.html" class="pcard fade-in">
+      <img src="images/Orgueil (v4).jpg" alt="Regard croisés">
+      <span class="pcard-arrow">↗</span>
+      <div class="pcard-overlay">
+        <div class="pcard-tag">Expo artistique · Photo & IA</div>
+        <div class="pcard-title">Regard croisés</div>
+        <div class="pcard-sub">Direction artistique · 7 péchés</div>
+      </div>
+    </a>
+
+    <a href="visuels-sport.html" class="pcard fade-in">
+      <img src="images/matchday1.jpg" alt="Visuels sport">
+      <span class="pcard-arrow">↗</span>
+      <div class="pcard-overlay">
+        <div class="pcard-tag">Design graphique · Personnel</div>
+        <div class="pcard-title">Visuels sport & F1</div>
+        <div class="pcard-sub">Affiches · Compositions graphiques</div>
+      </div>
+    </a>
+
+    <a href="mix-and-light.html" class="pcard fade-in">
+      <img src="images/Capture d'écran 2026-03-12 214326.png" alt="Mix and Light">
+      <span class="pcard-arrow">↗</span>
+      <div class="pcard-overlay">
+        <div class="pcard-tag">Site WordPress · Événementiel</div>
+        <div class="pcard-title">Mix and Light</div>
+        <div class="pcard-sub">UX · Boutique · Lead gen</div>
+      </div>
+    </a>
+
+    <a href="cadeau-be.html" class="pcard fade-in">
+      <img src="images/Capture d'écran 2026-03-12 214715.png" alt="Cadeau-be">
+      <span class="pcard-arrow">↗</span>
+      <div class="pcard-overlay">
+        <div class="pcard-tag">UX Design · Figma</div>
+        <div class="pcard-title">Cadeau-be</div>
+        <div class="pcard-sub">App mobile · Parcours UX</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<hr class="div" id="about">
+
+<section class="about-s">
+  <div class="fade-in">
+    <h2>Créatif, motivé<br>& force de proposition.</h2>
+    <p>Je conçois des supports graphiques clairs et impactants, adaptés aux objectifs de communication. À l'aise avec la suite Adobe, je crée des visuels, des identités graphiques et des contenus pour les réseaux sociaux.</p>
+    <p>Passionné par le sport, la musique et la photographie, je développe ma créativité à travers des compositions graphiques et du storytelling visuel — notamment autour de l'univers de la Formule 1.</p>
+    <p>Autonome, rigoureux et toujours en veille, je sais m'adapter à un brief, travailler en équipe et contribuer activement à des projets digitaux ambitieux.</p>
+    <div class="chip-row">
+      <span class="chip">Design graphique</span><span class="chip">Community management</span>
+      <span class="chip">Stratégie digitale</span><span class="chip">UX/UI</span>
+      <span class="chip">Direction artistique</span><span class="chip">Publicité en ligne</span>
+    </div>
+  </div>
+  <div class="stats-grid fade-in">
+    <div class="stat-block"><div class="stat-n">6+</div><div class="stat-l">Projets réalisés</div></div>
+    <div class="stat-block"><div class="stat-n">208</div><div class="stat-l">Abonnés Instagram</div></div>
+    <div class="stat-block"><div class="stat-n">16K</div><div class="stat-l">Vues / 30 jours</div></div>
+    <div class="stat-block"><div class="stat-n">F1</div><div class="stat-l">Univers de prédilection</div></div>
+  </div>
+</section>
+
+<hr class="div" id="contact">
+
+<section style="display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;padding:3rem 4rem;align-items:center;">
+  <div class="fade-in">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:300;line-height:1.15;margin-bottom:1.8rem;">On travaille<br><em style="font-style:italic;color:var(--gold);">ensemble ?</em></h2>
+    <div style="display:flex;flex-direction:column;gap:.9rem;">
+      <a href="mailto:timeo.renard@ynov.com" style="display:flex;align-items:center;gap:.8rem;font-size:.92rem;color:var(--muted);text-decoration:none;transition:color .2s" onmouseover="this.style.color='#B8975A'" onmouseout="this.style.color='#777'">
+        <span style="width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0"></span>timeo.renard@ynov.com
+      </a>
+      <a href="https://linkedin.com/in/timeorenard" target="_blank" style="display:flex;align-items:center;gap:.8rem;font-size:.92rem;color:var(--muted);text-decoration:none;transition:color .2s" onmouseover="this.style.color='#B8975A'" onmouseout="this.style.color='#777'">
+        <span style="width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0"></span>LinkedIn · Timéo Renard
+      </a>
+    </div>
+  </div>
+  <div class="fade-in" style="border:.5px solid var(--border);border-radius:2px;padding:2rem;">
+    <div style="display:flex;align-items:center;gap:.6rem;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem;">
+      <span style="width:6px;height:6px;border-radius:50%;background:#4caf50;animation:pu 2.2s infinite;display:inline-block"></span>Disponible pour des projets
+    </div>
+    <p style="font-size:.82rem;color:var(--muted);font-weight:300;margin-bottom:.3rem">Sophia Antipolis · Côte d'Azur</p>
+    <p style="font-size:.82rem;color:var(--muted);font-weight:300">B1 Marketing Digital · Ynov Campus</p>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;font-style:italic;color:var(--dark);line-height:1.55;margin-top:1.3rem;padding-top:1.3rem;border-top:.5px solid var(--border)">"Créer des choses qui ont de l'impact — c'est tout ce qui compte."</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Timéo Renard</p>
+  <p>Marketing & Communication · Design · Community</p>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>
