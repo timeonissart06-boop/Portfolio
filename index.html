@@ -16,10 +16,10 @@
     .hero-obj{font-size:.88rem;color:var(--dark);margin-bottom:1.8rem;padding-left:1rem;border-left:2px solid var(--gold);font-weight:400}
     .hero-tools{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:2.2rem}
     .cta-row{display:flex;gap:1.5rem;align-items:center}
-    .cta-p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--off);background:var(--dark);padding:.72rem 1.4rem;border-radius:2px;text-decoration:none;transition:background .2s}
-    .cta-p:hover{background:#2a2a2a}
-    .cta-s{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-bottom:.5px solid var(--border2);padding-bottom:1px;text-decoration:none;transition:color .2s}
-    .cta-s:hover{color:var(--gold)}
+    .cta-p{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--off);background:var(--dark);padding:.72rem 1.4rem;border-radius:2px;text-decoration:none;display:inline-block;transition:background .3s,letter-spacing .3s,transform .3s}
+    .cta-p:hover{background:#2a2a2a;letter-spacing:.17em;transform:translateY(-2px)}
+    .cta-s{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-bottom:.5px solid var(--border2);padding-bottom:1px;text-decoration:none;transition:color .2s,border-color .2s}
+    .cta-s:hover{color:var(--gold);border-color:var(--gold)}
 
     /* GRILLE PROJETS — layout sans trous */
     .proj-section{padding:3.5rem 4rem}
@@ -61,6 +61,9 @@
   </style>
 </head>
 <body>
+<canvas id="fluid-bg" aria-hidden="true"></canvas>
+<div id="scroll-progress"></div>
+<div class="page">
 <nav>
   <a class="nav-logo" href="index.html">TR</a>
   <ul class="nav-links">
@@ -213,6 +216,8 @@
   <p>© 2025 Timéo Renard</p>
   <p>Marketing & Communication · Design · Community</p>
 </footer>
+</div>
+<script src="background.js"></script>
 <script src="main.js"></script>
 </body>
 </html>
