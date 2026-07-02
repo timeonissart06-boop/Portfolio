@@ -8,23 +8,57 @@
     .rc-hero{min-height:46vh;background:#0d0d0d;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:4rem;text-align:center;position:relative;overflow:hidden}
     .rc-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.16;filter:grayscale(40%);background-image:url('images/Envie (v4) (1).jpg')}
     .rc-logo{width:140px;margin:0 auto 1.6rem;filter:invert(1)}
-    .finales-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+
+    /* Quick reading index — sets the order of the page up front */
+    .rc-index{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.6rem}
+    .rc-index a{
+      font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--muted);text-decoration:none;padding:.5rem 1rem;
+      border:.5px solid var(--border2);border-radius:2px;
+      transition:color .25s,border-color .25s,transform .25s;
+    }
+    .rc-index a:hover{color:var(--gold);border-color:var(--gold);transform:translateY(-2px)}
+
     .ibox{border-radius:2px;overflow:hidden}
     .ibox img{width:100%;display:block;object-fit:contain;max-height:420px}
-    .peche-block{padding:2.2rem 4rem;border-top:.5px solid var(--border)}
-    .peche-title{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;font-style:italic;color:var(--gold);margin-bottom:.3rem}
-    .peche-sub{font-size:.88rem;color:var(--muted);font-weight:300;margin-bottom:1.5rem}
-    .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-    .trio-col{text-align:center}
-    .trio-col:nth-child(2){transform:translateY(14px)}
-    .trio-label{font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
-    .trio-col .ibox img{max-height:240px}
-    .final-col{display:flex;flex-direction:column}
-    .affiche-label{margin-top:1.3rem;padding-top:1.1rem;border-top:.5px dashed var(--border2);display:flex;align-items:center;justify-content:center;gap:.5rem}
-    .affiche-label::before{content:'↓';color:var(--gold);font-size:.8rem}
-    .affiche-ibox{background:#0f0f0f}
-    .trio-col .affiche-ibox img{max-height:460px}
-    @media(max-width:768px){.trio{grid-template-columns:1fr}.trio-col:nth-child(2){transform:none}.peche-block{padding:2rem 1.5rem}.finales-grid{grid-template-columns:1fr 1fr}}
+
+    /* ── Per-péché block ─────────────────────────────────────────── */
+    .peche-block{padding:3.5rem 4rem;border-top:.5px solid var(--border);scroll-margin-top:5rem}
+    .peche-head{display:flex;align-items:baseline;gap:1rem;margin-bottom:2.2rem}
+    .peche-swatch{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-bottom:.2rem}
+    .peche-title{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;font-style:italic;color:var(--gold)}
+    .peche-sub{font-size:.85rem;color:var(--muted);font-weight:300;margin-top:.2rem}
+
+    .mini-label{font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+    .mini-label.gold{color:var(--gold);font-size:.64rem;letter-spacing:.15em;font-weight:500}
+
+    /* Process step — smaller, secondary, muted (reference material) */
+    .process-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:2.4rem}
+    .process-col{text-align:center}
+    .process-col .ibox{background:#0d0d0d}
+    .process-col .ibox img{max-height:190px}
+
+    /* Result step — the pay-off: photo + its poster, paired and featured */
+    .result-head{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem}
+    .result-head::before{content:'';width:20px;height:.5px;background:var(--gold)}
+    .result-head-label{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+    .result-row{display:grid;grid-template-columns:1.4fr 1fr;gap:1.5rem;align-items:end}
+    .result-col .ibox{background:#0d0d0d;height:380px;width:100%;display:flex;align-items:center;justify-content:center}
+    .result-photo .ibox img{max-height:380px;max-width:100%;width:auto;height:auto;object-fit:contain}
+    /* Fixed aspect-ratio matching the A3 poster exactly — the image fills it
+       edge-to-edge with object-fit:cover, so no letterboxing/frame is ever visible */
+    .result-affiche .ibox{aspect-ratio:297/420;height:380px;width:auto;margin-left:auto;background:none}
+    .result-affiche .ibox img{width:100%;height:100%;object-fit:cover;max-height:none}
+
+    @media(max-width:768px){
+      .peche-block{padding:2.2rem 1.5rem}
+      .process-row{grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.8rem}
+      .process-col .ibox img{max-height:140px}
+      .result-row{grid-template-columns:1fr;gap:1.2rem}
+      .result-col .ibox{height:auto;max-height:60vh}
+      .result-photo .ibox img{max-height:60vh;max-width:100%}
+      .result-affiche .ibox{height:auto;aspect-ratio:297/420;width:70vw;max-width:280px;margin:0 auto}
+    }
   </style>
 </head>
 <body>
@@ -51,10 +85,15 @@
       <h2 class="section-title">Le concept</h2>
       <p class="body-text">L'objectif était de créer une exposition artistique mêlant photographie et intelligence artificielle, en travaillant toutes les étapes du projet, de la création à la communication.</p>
       <p class="body-text">Avec mon équipe, nous avons choisi comme thème les <strong>7 péchés capitaux</strong>, interprétés à travers des portraits photographiques retravaillés avec l'IA.</p>
-      <p class="body-text">J'ai participé à la conception des visuels et à la direction artistique.</p>
+      <p class="body-text">J'ai participé à la conception des visuels et à la direction artistique. Chaque péché suit le même processus : moodboard → photo de base → image finale IA → affiche magazine.</p>
       <div class="chip-row">
         <span class="chip">Direction artistique</span><span class="chip">Photographie</span>
         <span class="chip">IA générative</span><span class="chip">Moodboard</span>
+      </div>
+      <div class="rc-index">
+        <a href="#colere">La Colère →</a>
+        <a href="#orgueil">L'Orgueil →</a>
+        <a href="#envie">L'Envie →</a>
       </div>
     </div>
     <div class="ibox fade-in">
@@ -63,54 +102,66 @@
   </div>
 </section>
 
-<hr class="div">
-<div class="sec-head fade-in"><span class="sec-label">Images finales</span><div class="sec-line"></div></div>
-<section class="content-section fade-in">
-  <div class="finales-grid">
-    <div class="ibox"><img src="images/Colère (v5).jpg" alt="La Colère"></div>
-    <div class="ibox"><img src="images/Orgueil (v4).jpg" alt="L'Orgueil"></div>
-    <div class="ibox"><img src="images/Envie (v4) (1).jpg" alt="L'Envie"></div>
-  </div>
-</section>
-
-<hr class="div">
-
-<div class="peche-block fade-in">
-  <div class="peche-title">La Colère</div>
-  <div class="peche-sub">Rouge Vif · #d90000 — Symbolisant l'éruption intérieure, la perte de contrôle.</div>
-  <div class="trio">
-    <div class="trio-col"><div class="trio-label">Moodboard</div><div class="ibox"><img src="images/Moodboard - Les Erudits - Colère.png" alt="Moodboard"></div></div>
-    <div class="trio-col"><div class="trio-label">Photo de base</div><div class="ibox"><img src="images/colere-base.png" alt="Base Colère"></div></div>
-    <div class="trio-col final-col">
-      <div class="trio-label">Image finale</div><div class="ibox"><img src="images/Colère (v5).jpg" alt="Finale"></div>
-      <div class="affiche-label trio-label">Affiche magazine</div><div class="ibox affiche-ibox"><img src="images/affiche-colere.png" alt="Affiche magazine — La Colère"></div>
+<div class="peche-block fade-in" id="colere">
+  <div class="peche-head">
+    <span class="peche-swatch" style="background:#d90000"></span>
+    <div>
+      <div class="peche-title">La Colère</div>
+      <div class="peche-sub">Rouge Vif · #d90000 — Symbolisant l'éruption intérieure, la perte de contrôle.</div>
     </div>
+  </div>
+
+  <div class="process-row">
+    <div class="process-col"><div class="mini-label">01 · Moodboard</div><div class="ibox"><img src="images/Moodboard - Les Erudits - Colère.png" alt="Moodboard Colère"></div></div>
+    <div class="process-col"><div class="mini-label">02 · Photo de base</div><div class="ibox"><img src="images/colere-base.png" alt="Photo de base Colère"></div></div>
+  </div>
+
+  <div class="result-head"><span class="result-head-label">03 · Résultat final</span></div>
+  <div class="result-row">
+    <div class="result-col result-photo"><div class="mini-label gold">Image finale (IA)</div><div class="ibox"><img src="images/Colère (v5).jpg" alt="Image finale — La Colère"></div></div>
+    <div class="result-col result-affiche"><div class="mini-label gold">Affiche magazine</div><div class="ibox"><img src="images/affiche-colere.png" alt="Affiche magazine — La Colère"></div></div>
   </div>
 </div>
 
-<div class="peche-block fade-in">
-  <div class="peche-title">L'Orgueil</div>
-  <div class="peche-sub">Orange Grisé · #d58553 — Symbolisant la domination et la mise en scène de soi.</div>
-  <div class="trio">
-    <div class="trio-col"><div class="trio-label">Moodboard</div><div class="ibox"><img src="images/Moodboard - Les Erudits - Orgueil.png" alt="Moodboard"></div></div>
-    <div class="trio-col"><div class="trio-label">Photo de base</div><div class="ibox"><img src="images/orgueil-base.png" alt="Base Orgueil"></div></div>
-    <div class="trio-col final-col">
-      <div class="trio-label">Image finale</div><div class="ibox"><img src="images/Orgueil (v4).jpg" alt="Finale"></div>
-      <div class="affiche-label trio-label">Affiche magazine</div><div class="ibox affiche-ibox"><img src="images/affiche-orgueil.png" alt="Affiche magazine — L'Orgueil"></div>
+<div class="peche-block fade-in" id="orgueil">
+  <div class="peche-head">
+    <span class="peche-swatch" style="background:#d58553"></span>
+    <div>
+      <div class="peche-title">L'Orgueil</div>
+      <div class="peche-sub">Orange Grisé · #d58553 — Symbolisant la domination et la mise en scène de soi.</div>
     </div>
+  </div>
+
+  <div class="process-row">
+    <div class="process-col"><div class="mini-label">01 · Moodboard</div><div class="ibox"><img src="images/Moodboard - Les Erudits - Orgueil.png" alt="Moodboard Orgueil"></div></div>
+    <div class="process-col"><div class="mini-label">02 · Photo de base</div><div class="ibox"><img src="images/orgueil-base.png" alt="Photo de base Orgueil"></div></div>
+  </div>
+
+  <div class="result-head"><span class="result-head-label">03 · Résultat final</span></div>
+  <div class="result-row">
+    <div class="result-col result-photo"><div class="mini-label gold">Image finale (IA)</div><div class="ibox"><img src="images/Orgueil (v4).jpg" alt="Image finale — L'Orgueil"></div></div>
+    <div class="result-col result-affiche"><div class="mini-label gold">Affiche magazine</div><div class="ibox"><img src="images/affiche-orgueil.png" alt="Affiche magazine — L'Orgueil"></div></div>
   </div>
 </div>
 
-<div class="peche-block fade-in">
-  <div class="peche-title">L'Envie</div>
-  <div class="peche-sub">Vert Avocat · #3f5a34 — Symbolisant le désir de l'autre, le regard qui ronge.</div>
-  <div class="trio">
-    <div class="trio-col"><div class="trio-label">Moodboard</div><div class="ibox"><img src="images/Moodboard - Les Erudits - Envie.png" alt="Moodboard"></div></div>
-    <div class="trio-col"><div class="trio-label">Photo de base</div><div class="ibox"><img src="images/envie-base.png" alt="Base Envie"></div></div>
-    <div class="trio-col final-col">
-      <div class="trio-label">Image finale</div><div class="ibox"><img src="images/Envie (v4) (1).jpg" alt="Finale"></div>
-      <div class="affiche-label trio-label">Affiche magazine</div><div class="ibox affiche-ibox"><img src="images/affiche-envie.png" alt="Affiche magazine — L'Envie"></div>
+<div class="peche-block fade-in" id="envie">
+  <div class="peche-head">
+    <span class="peche-swatch" style="background:#3f5a34"></span>
+    <div>
+      <div class="peche-title">L'Envie</div>
+      <div class="peche-sub">Vert Avocat · #3f5a34 — Symbolisant le désir de l'autre, le regard qui ronge.</div>
     </div>
+  </div>
+
+  <div class="process-row">
+    <div class="process-col"><div class="mini-label">01 · Moodboard</div><div class="ibox"><img src="images/Moodboard - Les Erudits - Envie.png" alt="Moodboard Envie"></div></div>
+    <div class="process-col"><div class="mini-label">02 · Photo de base</div><div class="ibox"><img src="images/envie-base.png" alt="Photo de base Envie"></div></div>
+  </div>
+
+  <div class="result-head"><span class="result-head-label">03 · Résultat final</span></div>
+  <div class="result-row">
+    <div class="result-col result-photo"><div class="mini-label gold">Image finale (IA)</div><div class="ibox"><img src="images/Envie (v4) (1).jpg" alt="Image finale — L'Envie"></div></div>
+    <div class="result-col result-affiche"><div class="mini-label gold">Affiche magazine</div><div class="ibox"><img src="images/affiche-envie.png" alt="Affiche magazine — L'Envie"></div></div>
   </div>
 </div>
 

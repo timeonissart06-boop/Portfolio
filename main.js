@@ -13,56 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateProgress();
   }
 
-  // ─── CUSTOM CURSOR ───────────────────────────────────────────────
-  const isTouchDevice = window.matchMedia('(max-width:768px)').matches || navigator.maxTouchPoints > 0;
-
-  if (!isTouchDevice) {
-    const cursor = document.createElement('div');
-    cursor.className = 'cursor';
-    const ring = document.createElement('div');
-    ring.className = 'cursor-ring';
-    document.body.appendChild(cursor);
-    document.body.appendChild(ring);
-
-    let mouseX = 0, mouseY = 0;
-    let ringX = 0, ringY = 0;
-
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursor.style.left = mouseX + 'px';
-      cursor.style.top = mouseY + 'px';
-    });
-
-    (function animateRing() {
-      ringX += (mouseX - ringX) * 0.11;
-      ringY += (mouseY - ringY) * 0.11;
-      ring.style.left = ringX + 'px';
-      ring.style.top = ringY + 'px';
-      requestAnimationFrame(animateRing);
-    })();
-
-    document.querySelectorAll('a, button, .pcard, .carousel-btn, .carousel-dot, .chip').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.classList.add('is-hovering');
-        ring.classList.add('is-hovering');
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.classList.remove('is-hovering');
-        ring.classList.remove('is-hovering');
-      });
-    });
-
-    document.addEventListener('mousedown', () => {
-      cursor.classList.add('is-clicking');
-      ring.classList.add('is-clicking');
-    });
-    document.addEventListener('mouseup', () => {
-      cursor.classList.remove('is-clicking');
-      ring.classList.remove('is-clicking');
-    });
-  }
-
   // ─── NAV SCROLL ──────────────────────────────────────────────────
   const nav = document.querySelector('nav');
   if (nav) {

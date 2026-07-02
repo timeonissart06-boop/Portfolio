@@ -20,7 +20,6 @@ body{
   color:var(--off);
   font-family:'Inter',sans-serif;
   overflow-x:hidden;
-  cursor:none;
 }
 
 ::selection{background:var(--gold);color:#0a0a0a}
@@ -46,36 +45,6 @@ body::before{
 
 /* Scroll progress hairline */
 #scroll-progress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--gold);z-index:200;transition:width .12s linear;box-shadow:0 0 8px rgba(201,168,76,.5)}
-
-/* ─── CUSTOM CURSOR ─────────────────────────────────────────────── */
-.cursor{
-  position:fixed;
-  width:6px;height:6px;
-  background:var(--gold);
-  border-radius:50%;
-  pointer-events:none;
-  z-index:9999;
-  transform:translate(-50%,-50%);
-  transition:width .25s ease,height .25s ease,background .25s ease;
-  will-change:left,top;
-}
-.cursor-ring{
-  position:fixed;
-  width:30px;height:30px;
-  border:1px solid rgba(201,168,76,.4);
-  border-radius:50%;
-  pointer-events:none;
-  z-index:9998;
-  transform:translate(-50%,-50%);
-  transition:width .35s ease,height .35s ease,border-color .3s ease;
-  will-change:left,top;
-}
-.cursor.is-hovering{width:10px;height:10px;background:var(--gold)}
-.cursor-ring.is-hovering{width:46px;height:46px;border-color:var(--gold)}
-.cursor.is-clicking{width:4px;height:4px}
-.cursor-ring.is-clicking{width:20px;height:20px}
-
-a,button,[role="button"],.pcard,.carousel-btn,.carousel-dot,.chip{cursor:none}
 
 /* ─── NAVIGATION ────────────────────────────────────────────────── */
 nav{
@@ -283,6 +252,7 @@ p.body-text{
   border-radius:50%;
   background:var(--border2);
   transition:background .25s,transform .25s;
+  cursor:pointer;
 }
 .carousel-dot.active{background:var(--gold);transform:scale(1.5)}
 
@@ -344,9 +314,6 @@ footer p{font-size:.68rem;color:var(--muted);font-weight:300;letter-spacing:.06e
 
 /* ─── RESPONSIVE ────────────────────────────────────────────────── */
 @media(max-width:768px){
-  body{cursor:auto}
-  .cursor,.cursor-ring{display:none}
-  a,button,[role="button"],.pcard,.carousel-btn,.carousel-dot,.chip{cursor:auto}
   nav{padding:1.2rem 1.5rem}
   nav.scrolled{padding:.9rem 1.5rem}
   .content-section{padding:2rem 1.5rem}
