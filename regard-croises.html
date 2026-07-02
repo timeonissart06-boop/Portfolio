@@ -19,7 +19,8 @@
     }
     .rc-index a:hover{color:var(--gold);border-color:var(--gold);transform:translateY(-2px)}
 
-    /* Base box: shrinks to the image's own size (used by the single concept visual) */
+    /* The box always shrinks to the image's own rendered size (fit-content),
+       so there is never leftover space around it for a background to show through. */
     .ibox{border-radius:2px;overflow:hidden;width:fit-content;max-width:100%;margin:0 auto;background:none}
     .ibox img{display:block;width:auto;height:auto;max-width:100%;object-fit:contain;max-height:420px}
 
@@ -33,33 +34,30 @@
     .mini-label{font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
     .mini-label.gold{color:var(--gold);font-size:.64rem;letter-spacing:.15em;font-weight:500}
 
-    /* Process step — moodboard + base photo: identical box size (fixed ratio,
-       fills the full column, cropped with object-fit:cover) so both are
-       perfectly aligned and the same size as each other, on every péché. */
+    /* Process step — smaller, secondary, muted (reference material) */
     .process-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:2.4rem}
     .process-col{text-align:center}
-    .process-col .ibox{width:100%;aspect-ratio:4/3;margin:0}
-    .process-col .ibox img{width:100%;height:100%;max-width:none;max-height:none;object-fit:cover}
+    .process-col .ibox img{max-height:190px}
 
-    /* Result step — the pay-off: photo + its poster, paired and featured.
-       Both columns are filled edge-to-edge (fixed ratio + cover) so each is
-       consistently sized across all three péché sections. */
+    /* Result step — the pay-off: photo + its poster, paired and featured */
     .result-head{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem}
     .result-head::before{content:'';width:20px;height:.5px;background:var(--gold)}
     .result-head-label{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
-    .result-row{display:grid;grid-template-columns:1.4fr 1fr;gap:1.5rem;align-items:start}
+    .result-row{display:grid;grid-template-columns:1.4fr 1fr;gap:1.5rem;align-items:end}
     .result-col{text-align:center}
-    .result-photo .ibox{width:100%;aspect-ratio:3/2;margin:0}
-    .result-photo .ibox img{width:100%;height:100%;max-width:none;max-height:none;object-fit:cover}
-    /* Poster's own true ratio (A3) is kept so its design/text is never distorted or cropped oddly */
-    .result-affiche .ibox{width:100%;aspect-ratio:297/420;margin:0}
+    .result-photo .ibox img{max-height:380px}
+    /* Fixed aspect-ratio matching the A3 poster exactly — the image fills it
+       edge-to-edge with object-fit:cover, so no letterboxing/frame is ever visible */
+    .result-affiche .ibox{aspect-ratio:297/420;height:380px;width:auto;margin:0 0 0 auto}
     .result-affiche .ibox img{width:100%;height:100%;object-fit:cover;max-height:none}
 
     @media(max-width:768px){
       .peche-block{padding:2.2rem 1.5rem}
       .process-row{grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.8rem}
+      .process-col .ibox img{max-height:140px}
       .result-row{grid-template-columns:1fr;gap:1.2rem}
-      .result-affiche .ibox{width:70vw;max-width:280px;margin:0 auto}
+      .result-photo .ibox img{max-height:60vh}
+      .result-affiche .ibox{height:auto;aspect-ratio:297/420;width:70vw;max-width:280px;margin:0 auto}
     }
   </style>
 </head>
