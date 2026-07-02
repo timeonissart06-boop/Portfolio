@@ -19,8 +19,10 @@
     }
     .rc-index a:hover{color:var(--gold);border-color:var(--gold);transform:translateY(-2px)}
 
-    .ibox{border-radius:2px;overflow:hidden}
-    .ibox img{width:100%;display:block;object-fit:contain;max-height:420px}
+    /* The box always shrinks to the image's own rendered size (fit-content),
+       so there is never leftover space around it for a background to show through. */
+    .ibox{border-radius:2px;overflow:hidden;width:fit-content;max-width:100%;margin:0 auto;background:none}
+    .ibox img{display:block;width:auto;height:auto;max-width:100%;object-fit:contain;max-height:420px}
 
     /* ── Per-péché block ─────────────────────────────────────────── */
     .peche-block{padding:3.5rem 4rem;border-top:.5px solid var(--border);scroll-margin-top:5rem}
@@ -35,7 +37,6 @@
     /* Process step — smaller, secondary, muted (reference material) */
     .process-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:2.4rem}
     .process-col{text-align:center}
-    .process-col .ibox{background:#0d0d0d}
     .process-col .ibox img{max-height:190px}
 
     /* Result step — the pay-off: photo + its poster, paired and featured */
@@ -43,11 +44,11 @@
     .result-head::before{content:'';width:20px;height:.5px;background:var(--gold)}
     .result-head-label{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
     .result-row{display:grid;grid-template-columns:1.4fr 1fr;gap:1.5rem;align-items:end}
-    .result-col .ibox{background:#0d0d0d;height:380px;width:100%;display:flex;align-items:center;justify-content:center}
-    .result-photo .ibox img{max-height:380px;max-width:100%;width:auto;height:auto;object-fit:contain}
+    .result-col{text-align:center}
+    .result-photo .ibox img{max-height:380px}
     /* Fixed aspect-ratio matching the A3 poster exactly — the image fills it
        edge-to-edge with object-fit:cover, so no letterboxing/frame is ever visible */
-    .result-affiche .ibox{aspect-ratio:297/420;height:380px;width:auto;margin-left:auto;background:none}
+    .result-affiche .ibox{aspect-ratio:297/420;height:380px;width:auto;margin:0 0 0 auto}
     .result-affiche .ibox img{width:100%;height:100%;object-fit:cover;max-height:none}
 
     @media(max-width:768px){
@@ -55,8 +56,7 @@
       .process-row{grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.8rem}
       .process-col .ibox img{max-height:140px}
       .result-row{grid-template-columns:1fr;gap:1.2rem}
-      .result-col .ibox{height:auto;max-height:60vh}
-      .result-photo .ibox img{max-height:60vh;max-width:100%}
+      .result-photo .ibox img{max-height:60vh}
       .result-affiche .ibox{height:auto;aspect-ratio:297/420;width:70vw;max-width:280px;margin:0 auto}
     }
   </style>
